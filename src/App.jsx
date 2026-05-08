@@ -8,13 +8,13 @@ function App() {
  useEffect(() => { getUsers(); }, []);
 
  function getUsers() {
- fetch("http://localhost:5000/users")
+ fetch( `${import.meta.env.VITE_API_URL}/users`)
  .then((res) => res.json())
  .then((data) => setUsers(data));
  }
 
  function addUser() {
- fetch("http://localhost:5000/users", {
+ fetch( `${import.meta.env.VITE_API_URL}/users`, {
  method: "POST",
  headers: { "Content-Type": "application/json" },
  body: JSON.stringify({ name: name })
@@ -22,7 +22,7 @@ function App() {
  }
 
  function updateUser() {
- fetch(`http://localhost:5000/users/${editId}`, {
+ fetch(`${import.meta.env.VITE_API_URL}/users/${editId}`, {
  method: "PUT",
  headers: { "Content-Type": "application/json" },
  body: JSON.stringify({ name: name })
@@ -30,7 +30,7 @@ function App() {
  }
 
  function deleteUser(id) {
- fetch(`http://localhost:5000/users/${id}`, { method: "DELETE" })
+ fetch(`${import.meta.env.VITE_API_URL}/products/${id}`, { method: "DELETE" })
  .then(() => getUsers());
  }
 
